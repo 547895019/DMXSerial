@@ -68,6 +68,9 @@ typedef enum {
 #elif defined(ARDUINO_ARCH_MEGAAVR)
 #include "DMXSerial_megaavr.h"
 
+#elif defined(STM32F10X_MD) || defined(__STM32F1__) || defined(STM32F2XX)
+#include "DMXSerial_stm32.h"
+
 #endif
 
 

@@ -36,13 +36,23 @@
 #ifndef DmxSerial_h
 #define DmxSerial_h
 
+#if defined(STM32F10X_MD) || defined(__STM32F1__) || defined(STM32F2XX)
+#include <io.h>
+#else
+// AVR platforms
 #include <avr/io.h>
+#endif
 
 // ----- Constants -----
 
 #define DMXSERIAL_MAX 512 ///< max. number of supported DMX data channels
-
+#if defined(STM32F10X_MD) || defined(__STM32F1__) || defined(STM32F2XX)
+#define DMXMODEPIN 1     ///< Arduino pin 2 for controlling the data direction is the default value.
+#else
+// AVR platforms
 #define DMXMODEPIN 2     ///< Arduino pin 2 for controlling the data direction is the default value.
+#endif
+
 #define DmxModeOut HIGH  ///< set the level to HIGH for outgoing data direction
 #define DmxModeIn  LOW   ///< set the level to LOW  for incoming data direction
 
